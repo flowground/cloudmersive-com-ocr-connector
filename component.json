@@ -1,0 +1,174 @@
+{
+    "title": "ocrapi",
+    "description": "The powerful Optical Character Recognition (OCR) APIs let you convert scanned images of pages into recognized text.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/cloudmersive.com/ocr/v1/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.cloudmersive.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "Apikey": {
+                "label": "Apikey (Apikey)",
+                "viewClass": "TextFieldView",
+                "note": "API Key Authentication"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "ImageOcr_ImageLinesWithLocation": {
+            "main": "./lib/actions/ImageOcr_ImageLinesWithLocation.js",
+            "title": "Convert a scanned image into words with location",
+            "description": "Converts an uploaded image in common formats such as JPEG, PNG into lines/text with location information and other metdata via Optical Character Recognition.  This API is intended to be run on scanned documents.  If you want to OCR photos (e.g. taken with a smart phone camera), be sure to use the photo/toText API instead, as it is designed to unskew the image first.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ImageOcr_ImageLinesWithLocation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ImageOcr_ImageWordsWithLocation": {
+            "main": "./lib/actions/ImageOcr_ImageWordsWithLocation.js",
+            "title": "Convert a scanned image into words with location",
+            "description": "Converts an uploaded image in common formats such as JPEG, PNG into words/text with location information and other metdata via Optical Character Recognition.  This API is intended to be run on scanned documents.  If you want to OCR photos (e.g. taken with a smart phone camera), be sure to use the photo/toText API instead, as it is designed to unskew the image first.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ImageOcr_ImageWordsWithLocation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ImageOcr_Post": {
+            "main": "./lib/actions/ImageOcr_Post.js",
+            "title": "Convert a scanned image into text",
+            "description": "Converts an uploaded image in common formats such as JPEG, PNG into text via Optical Character Recognition.  This API is intended to be run on scanned documents.  If you want to OCR photos (e.g. taken with a smart phone camera), be sure to use the photo/toText API instead, as it is designed to unskew the image first.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ImageOcr_Post.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PdfOcr_PdfToWordsWithLocation": {
+            "main": "./lib/actions/PdfOcr_PdfToWordsWithLocation.js",
+            "title": "Convert a PDF into words with location",
+            "description": "Converts a PDF into words/text with location information and other metdata via Optical Character Recognition.  This API is intended to be run on scanned documents.  If you want to OCR photos (e.g. taken with a smart phone camera), be sure to use the photo/toText API instead, as it is designed to unskew the image first.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PdfOcr_PdfToWordsWithLocation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "PdfOcr_Post": {
+            "main": "./lib/actions/PdfOcr_Post.js",
+            "title": "Converts an uploaded image in common formats such as JPEG, PNG into text via Optical Character Recognition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PdfOcr_Post.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ImageOcr_PhotoToText": {
+            "main": "./lib/actions/ImageOcr_PhotoToText.js",
+            "title": "Convert a photo of a document into text",
+            "description": "Converts an uploaded photo of a document in common formats such as JPEG, PNG into text via Optical Character Recognition.  This API is intended to be run on photos of documents, e.g. taken with a smartphone and supports cases where other content, such as a desk, are in the frame and the camera is crooked.  If you want to OCR a scanned image, use the image/toText API call instead as it is designed for scanned images.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ImageOcr_PhotoToText.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Preprocessing_Unrotate": {
+            "main": "./lib/actions/Preprocessing_Unrotate.js",
+            "title": "Detect and unrotate a document image",
+            "description": "Detect and unrotate an image of a document (e.g. that was scanned at an angle).  Great for document scanning applications; once unskewed, this image is perfect for converting to PDF using the Convert API or optical character recognition using the OCR API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Preprocessing_Unrotate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Preprocessing_Unskew": {
+            "main": "./lib/actions/Preprocessing_Unskew.js",
+            "title": "Detect and unskew a photo of a document",
+            "description": "Detect and unskew a photo of a document (e.g. taken on a cell phone) into a perfectly square image.  Great for document scanning applications; once unskewed, this image is perfect for converting to PDF using the Convert API or optical character recognition using the OCR API.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Preprocessing_Unskew.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
